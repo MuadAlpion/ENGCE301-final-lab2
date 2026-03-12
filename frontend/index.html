@@ -1087,7 +1087,7 @@
   <div class="toast-container" id="toast-container"></div>
   <script>
     /* ── STATE ── */
-    const AUTH_API = window.location.hostname === 'localhost' ? 'http://localhost:3001' : '';
+    const AUTH_API = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'auth-production-1800.up.railway.app';
     const TASK_API = window.location.hostname === 'localhost' ? 'http://localhost:3002' : '';
     const USER_API = window.location.hostname === 'localhost' ? 'http://localhost:3003' : '';
     let token = localStorage.getItem('jwt_token');
