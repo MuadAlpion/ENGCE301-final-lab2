@@ -1087,9 +1087,12 @@
   <div class="toast-container" id="toast-container"></div>
   <script>
     /* ── STATE ── */
-    const AUTH_API = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://auth-production-1800.up.railway.app';
-    const TASK_API = window.location.hostname === 'localhost' ? 'http://localhost:3002' : 'https://tasks-production-c3dd.up.railway.app';
-    const USER_API = window.location.hostname === 'localhost' ? 'http://localhost:3003' : 'https://users-production-6963.up.railway.app';
+    // Local dev runs behind nginx (TLS + reverse proxy). Use same-origin to avoid mixed-content/CORS issues.
+    const IS_LOCAL = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+    const LOCAL_ORIGIN = window.location.origin;
+    const AUTH_API = IS_LOCAL ? LOCAL_ORIGIN : 'https://auth-production-1800.up.railway.app';
+    const TASK_API = IS_LOCAL ? LOCAL_ORIGIN : 'https://tasks-production-c3dd.up.railway.app';
+    const USER_API = IS_LOCAL ? LOCAL_ORIGIN : 'https://users-production-6963.up.railway.app';
     let token = localStorage.getItem('jwt_token');
     let currentUser = null;
     let allTasks = [];
